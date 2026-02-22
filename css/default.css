@@ -1,53 +1,36 @@
 :root {
-    --bg-base: #14110f;       /* Deep obsidian/espresso */
-    --bg-surface: #1e1915;    /* Dark sandstone shadow */
-    --bg-card: #26201b;       /* Aged dark wood/stone */
-    --bg-card-hover: #332b25; /* Lighter wood */
-    --bg-elevated: #3a322c;
+    /* --- Royal Backgrounds (Ivory / Marble) --- */
+    --bg-base: #F9F6F0;       /* Warm Ivory/Parchment */
+    --bg-surface: #FDFBF7;    /* Lighter Marble */
+    --bg-card: #FFFFFF;       /* Pure white/marble card */
+    --bg-card-hover: #FFFDF8; /* Slight warmth on hover */
+    --bg-elevated: #FFFFFF;
 
-    --border: rgba(197, 160, 89, 0.15);       /* Faint gold borders */
-    --border-hover: rgba(197, 160, 89, 0.4);  /* Brighter gold on hover */
+    /* Faint brass borders */
+    --border: rgba(197, 160, 89, 0.3);
+    --border-hover: rgba(197, 160, 89, 0.8);
 
-    /* --- Text (Ivory/Parchment instead of harsh white) --- */
-    --text-primary: #F5F0E6;  /* Ivory Marble */
-    --text-secondary: #CBBFA8; /* Muted Antique Gold/Sand */
-    --text-tertiary: #9A8F7D;
-    --text-muted: #6B6255;
+    /* --- Text (Deep Espresso / Charcoal) --- */
+    --text-primary: #1e1915;  /* Deep Espresso */
+    --text-secondary: #5C5448; /* Dark Sandstone */
+    --text-tertiary: #8B7F6E;
+    --text-muted: #A39887;
 
-    /* --- Accents (The Royal Jewels & Spices) --- */
-
-    /* Mapped to your Blue: Peacock Teal */
-    --blue: #1A838A;
     --blue-bg: rgba(26, 131, 138, 0.15);
-
-    /* Mapped to your Green: Courtyard Emerald */
-    --green: #2A7249;
     --green-bg: rgba(42, 114, 73, 0.15);
-
-    /* Mapped to your Orange: Jaisalmer Sandstone / Terracotta */
-    --orange: #C45A36;
     --orange-bg: rgba(196, 90, 54, 0.15);
-
-    /* Mapped to your Purple: Deep Ruby / Crimson */
-    --purple: #9C2A2A;
     --purple-bg: rgba(156, 42, 42, 0.15);
-
-    /* Mapped to your Pink: Antique Brass / Gold */
-    --pink: #C5A059;
-    --pink-bg: rgba(197, 160, 89, 0.15);
-
-    /* Mapped to your Teal: Royal Indigo */
-    --teal: #364156;
+    --pink-bg: rgba(184, 134, 11, 0.15);
     --teal-bg: rgba(54, 65, 86, 0.15);
 
     /* --- Dimensions & Effects --- */
-    --radius: 12px;           /* Slightly sharper, less 'bubbly' for an elegant look */
+    --radius: 12px;
     --radius-sm: 8px;
     --radius-xs: 4px;
-    --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    /* Softer, warmer shadow for light mode */
+    --shadow: 0 8px 30px rgba(139, 127, 110, 0.15);
     --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-    /* --- Typography (Consider a serif font for headings later!) --- */
     --font: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
@@ -119,15 +102,14 @@ nav {
     font-size: 1.1rem;
     color: var(--text-primary);
 
-    /* Glass background just for the logo area */
-    background: rgba(11, 18, 25, 0.8);
+    /* Changed to Light Glassmorphism */
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     padding: 8px 16px;
     border-radius: 50px;
     width: fit-content;
 
-    /* Make the Nav Brand feel interactive */
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -138,49 +120,40 @@ nav {
 }
 
 .nav-brand:hover {
-    transform: scale(1.02); /* Subtle pop effect */
+    transform: scale(1.02);
 }
 
 /* 2. Center: The "Floating Dock" Menu */
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 6px; /* Space between buttons */
+    gap: 6px;
 
-    /* The "Big Box" Container */
-    background: rgba(11, 18, 25, 0.8);
+    /* Changed to Light Glassmorphism */
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    padding: 6px; /* Padding inside the dock */
-    border-radius: 100px; /* Pill shape */
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3); /* Nice floating shadow */
+    padding: 6px;
+    border-radius: 100px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); /* Softer shadow for light mode */
 }
 
 /* 3. The Individual Links (Buttons) */
 .nav-links a {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600; /* Bumped up weight so it stands out */
     text-decoration: none;
-
-    /* Making them look like big buttons */
     padding: 10px 24px;
     border-radius: 50px;
     transition: all 0.2s ease;
 }
 
-/* Hover Effect */
+/* Hover Effect for Light Mode */
 .nav-links a:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.08); /* Subtle light up */
-    transform: translateY(-1px);
-}
-
-/* Optional: Active State (you can add class="active" in HTML to current section) */
-.nav-links a.active {
-    background: var(--blue-bg);
     color: var(--blue);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    background: rgba(0, 0, 0, 0.04); /* Subtle dark shading instead of light shading */
+    transform: translateY(-1px);
 }
 
 /* --- Hero Section --- */
@@ -408,7 +381,8 @@ nav {
 
 .stat-chip-label {
     font-size: 0.75rem;
-    color: var(--text-tertiary);
+    color: var(--text-secondary); /* Changed from tertiary to secondary for better contrast */
+    font-weight: 700;             /* Made the text bolder */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 4px;

@@ -1,44 +1,54 @@
 :root {
-    /* --- Colors --- */
-    --bg-base: #050505;
-    --bg-surface: #111c2a;
-    --bg-card: #162436;
-    --bg-card-hover: #1c2c40;
-    --bg-elevated: #223a50;
+    --bg-base: #14110f;       /* Deep obsidian/espresso */
+    --bg-surface: #1e1915;    /* Dark sandstone shadow */
+    --bg-card: #26201b;       /* Aged dark wood/stone */
+    --bg-card-hover: #332b25; /* Lighter wood */
+    --bg-elevated: #3a322c;
 
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.2);
+    --border: rgba(197, 160, 89, 0.15);       /* Faint gold borders */
+    --border-hover: rgba(197, 160, 89, 0.4);  /* Brighter gold on hover */
 
-    /* Text Colors - Brightened for readability */
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8; /* Much lighter than before */
-    --text-tertiary: #64748b;
-    --text-muted: #475569;
+    /* --- Text (Ivory/Parchment instead of harsh white) --- */
+    --text-primary: #F5F0E6;  /* Ivory Marble */
+    --text-secondary: #CBBFA8; /* Muted Antique Gold/Sand */
+    --text-tertiary: #9A8F7D;
+    --text-muted: #6B6255;
 
-    /* Accents */
-    --blue: #38bdf8;
-    --blue-bg: rgba(56, 189, 248, 0.1);
-    --green: #34d399;
-    --green-bg: rgba(52, 211, 153, 0.1);
-    --orange: #fb923c;
-    --orange-bg: rgba(251, 146, 60, 0.1);
-    --purple: #a78bfa;
-    --purple-bg: rgba(167, 139, 250, 0.1);
-    --pink: #f472b6;
-    --pink-bg: rgba(244, 114, 182, 0.1);
-    --teal: #2dd4bf;
-    --teal-bg: rgba(45, 212, 191, 0.1);
-    --red: #f87171;
+    /* --- Accents (The Royal Jewels & Spices) --- */
+
+    /* Mapped to your Blue: Peacock Teal */
+    --blue: #1A838A;
+    --blue-bg: rgba(26, 131, 138, 0.15);
+
+    /* Mapped to your Green: Courtyard Emerald */
+    --green: #2A7249;
+    --green-bg: rgba(42, 114, 73, 0.15);
+
+    /* Mapped to your Orange: Jaisalmer Sandstone / Terracotta */
+    --orange: #C45A36;
+    --orange-bg: rgba(196, 90, 54, 0.15);
+
+    /* Mapped to your Purple: Deep Ruby / Crimson */
+    --purple: #9C2A2A;
+    --purple-bg: rgba(156, 42, 42, 0.15);
+
+    /* Mapped to your Pink: Antique Brass / Gold */
+    --pink: #C5A059;
+    --pink-bg: rgba(197, 160, 89, 0.15);
+
+    /* Mapped to your Teal: Royal Indigo */
+    --teal: #364156;
+    --teal-bg: rgba(54, 65, 86, 0.15);
 
     /* --- Dimensions & Effects --- */
-    --radius: 16px;
-    --radius-sm: 12px;
-    --radius-xs: 6px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    --transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --radius: 12px;           /* Slightly sharper, less 'bubbly' for an elegant look */
+    --radius-sm: 8px;
+    --radius-xs: 4px;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-    /* --- Typography --- */
-    --font: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* --- Typography (Consider a serif font for headings later!) --- */
+    --font: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
 

@@ -1,8 +1,8 @@
 :root {
     /* --- Royal Backgrounds (Ivory / Marble) --- */
-    --bg-base: #F9F6F0;       /* Warm Ivory/Parchment */
-    --bg-surface: #FDFBF7;    /* Lighter Marble */
-    --bg-card: #FFFFFF;       /* Pure white/marble card */
+    --bg-base: #F9F6F0; /* Warm Ivory/Parchment */
+    --bg-surface: #FDFBF7; /* Lighter Marble */
+    --bg-card: #FFFFFF; /* Pure white/marble card */
     --bg-card-hover: #FFFDF8; /* Slight warmth on hover */
     --bg-elevated: #FFFFFF;
 
@@ -11,11 +11,19 @@
     --border-hover: rgba(197, 160, 89, 0.8);
 
     /* --- Text (Deep Espresso / Charcoal) --- */
-    --text-primary: #1e1915;  /* Deep Espresso */
+    --text-primary: #1e1915; /* Deep Espresso */
     --text-secondary: #5C5448; /* Dark Sandstone */
     --text-tertiary: #8B7F6E;
     --text-muted: #A39887;
 
+    --blue: #1A838A;
+    --green: #2A7249;
+    --orange: #C45A36;
+    --purple: #9C2A2A;
+    --pink: #B8860B;
+    --teal: #364156;
+
+    /* Keep your existing -bg colors below here */
     --blue-bg: rgba(26, 131, 138, 0.15);
     --green-bg: rgba(42, 114, 73, 0.15);
     --orange-bg: rgba(196, 90, 54, 0.15);
@@ -140,7 +148,7 @@ nav {
 
 /* 3. The Individual Links (Buttons) */
 .nav-links a {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-size: 0.95rem;
     font-weight: 600; /* Bumped up weight so it stands out */
     text-decoration: none;
@@ -168,7 +176,9 @@ nav {
 }
 
 /* Ambient Background Glow */
-.hero::before { display: none; }
+.hero::before {
+    display: none;
+}
 
 .hero-content {
     max-width: 1200px;
@@ -307,8 +317,8 @@ nav {
 
 .hero-title {
     font-size: 1.25rem;
-    color: var(--text-secondary);
-    font-weight: 300;
+    color: var(--text-primary);
+    font-weight: 400;
     max-width: 600px;
     line-height: 1.6;
 }
@@ -381,8 +391,8 @@ nav {
 
 .stat-chip-label {
     font-size: 0.75rem;
-    color: var(--text-secondary); /* Changed from tertiary to secondary for better contrast */
-    font-weight: 700;             /* Made the text bolder */
+    color: var(--text-primary); /* Changed from tertiary to secondary for better contrast */
+    font-weight: 700; /* Made the text bolder */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 4px;
@@ -767,11 +777,11 @@ footer a:hover {
         overflow-x: auto;
         justify-content: flex-start; /* Aligns items to start for scrolling */
         gap: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
         /* Hide scrollbar visually but keep functionality */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
     }
 
     /* Hide scrollbar for Chrome/Safari */
@@ -781,10 +791,13 @@ footer a:hover {
 
     /* 4. Smaller Buttons for Mobile */
     .nav-links a {
-        font-size: 0.85rem;
-        padding: 8px 16px;
-        white-space: nowrap; /* Prevents text wrapping */
-        background: rgba(255, 255, 255, 0.05); /* Slight background to see click area */
+        color: var(--text-primary); /* Much darker contrast */
+        font-size: 0.95rem;
+        font-weight: 600; /* Nice and bold */
+        text-decoration: none;
+        padding: 10px 24px;
+        border-radius: 50px;
+        transition: all 0.2s ease;
     }
 
     /* 5. Adjust Back-to-Top button to sit ABOVE the mobile menu */

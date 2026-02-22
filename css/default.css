@@ -367,6 +367,7 @@ nav {
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     transition: var(--transition);
+    text-align: left;
 }
 
 .stat-chip:hover {
@@ -396,6 +397,7 @@ nav {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 4px;
+    white-space: nowrap;
 }
 
 /* Certifications Row */
@@ -428,8 +430,12 @@ nav {
 }
 
 .section-head {
-    margin-bottom: 3rem;
     max-width: 700px;
+    margin: 0 auto 3rem auto; /* The 'auto' pushes it to the exact center of the page */
+    text-align: center;       /* Centers the title and paragraph text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centers the badge perfectly above the title */
 }
 
 .section-badge {
@@ -455,6 +461,28 @@ nav {
     font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+/* Featured Projects Header */
+.project-card-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.project-card-header .project-name {
+    margin-bottom: 0;
+}
+
+/* Grab the specific colors for the icons */
+.project-card[style*="--blue"] .project-link-icon {
+    color: var(--blue);
+}
+
+.project-card[style*="--purple"] .project-link-icon {
+    color: var(--purple);
 }
 
 /* --- Experience Blocks --- */
@@ -686,14 +714,57 @@ footer a:hover {
         justify-content: center;
     }
 
+    .certs-row {
+        justify-content: center;
+    }
+
+    .certs-row-label {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-card {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card-header {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
     .exp-block-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Changed from flex-start */
+        text-align: center; /* Added text centering */
         gap: 0.5rem;
+    }
+
+    .exp-block-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .achievements-grid, .edu-grid, .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .achievement {
+        text-align: center; /* Centers the title and paragraph text */
+        align-items: center; /* Centers the icon and the bottom metric badge */
+    }
+
+    .skill-card-label {
+        text-align: center;
+    }
+
+    .skill-tags {
+        justify-content: center; /* Centers the flexbox tags */
     }
 }
 
@@ -827,19 +898,25 @@ footer a:hover {
         font-size: 1rem; /* Smaller icons to match */
     }
 
-    /* --- FIX: Stop Explore Button from Overlapping --- */
     .scroll-cta {
         position: relative; /* Removes it from absolute positioning */
         bottom: auto;
-        left: auto;
-        transform: none;
-        margin-top: 3rem; /* Pushes it down below the certs */
-        padding-bottom: 60px; /* Gives it breathing room above your floating mobile menu */
+        left: auto; /* Removes the desktop centering hack */
+        transform: none; /* Removes the desktop centering hack */
+        margin-top: 2rem; /* Much smaller top gap */
+        margin-bottom: 2rem; /* Just enough space to clear your bottom menu */
+        align-self: center; /* <-- Centers it perfectly in the flex column */
+    }
+
+    .section {
+        padding: 4rem 1.5rem; /* Reduced from the desktop 6rem 2rem */
     }
 
     /* Ensure the hero section stretches cleanly on mobile */
     .hero {
+        min-height: auto;
         height: auto;
         padding-top: 120px; /* Clear the top logo */
+        flex-direction: column;
     }
 }

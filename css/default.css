@@ -811,4 +811,35 @@ footer a:hover {
     .back-to-top .material-icons-outlined {
         font-size: 20px;
     }
+
+    /* --- FIX: Make Meta Info Smaller on Mobile --- */
+    .hero-meta {
+        gap: 12px; /* Tighter horizontal spacing */
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-meta-item {
+        font-size: 0.8rem; /* Smaller text */
+    }
+
+    .hero-meta-item .material-icons-outlined {
+        font-size: 1rem; /* Smaller icons to match */
+    }
+
+    /* --- FIX: Stop Explore Button from Overlapping --- */
+    .scroll-cta {
+        position: relative; /* Removes it from absolute positioning */
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 3rem; /* Pushes it down below the certs */
+        padding-bottom: 60px; /* Gives it breathing room above your floating mobile menu */
+    }
+
+    /* Ensure the hero section stretches cleanly on mobile */
+    .hero {
+        height: auto;
+        padding-top: 120px; /* Clear the top logo */
+    }
 }

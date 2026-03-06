@@ -1,50 +1,81 @@
+/* =========================================================
+   THEME + GLOBAL VARIABLES
+========================================================= */
 :root {
-    /* --- Royal Backgrounds (Ivory / Marble) --- */
-    --bg-base: #F9F6F0; /* Warm Ivory/Parchment */
-    --bg-surface: #FDFBF7; /* Lighter Marble */
-    --bg-card: #FFFFFF; /* Pure white/marble card */
-    --bg-card-hover: #FFFDF8; /* Slight warmth on hover */
-    --bg-elevated: #FFFFFF;
+    /* Brand */
+    --arsenal-red: #EF0107;
+    --arsenal-white: #FFFFFF;
 
-    /* Faint brass borders */
-    --border: rgba(197, 160, 89, 0.3);
-    --border-hover: rgba(197, 160, 89, 0.8);
-
-    /* --- Text (Deep Espresso / Charcoal) --- */
-    --text-primary: #1e1915; /* Deep Espresso */
-    --text-secondary: #5C5448; /* Dark Sandstone */
-    --text-tertiary: #8B7F6E;
-    --text-muted: #A39887;
-
+    /* Accent palette */
     --blue: #1A838A;
     --green: #2A7249;
     --orange: #C45A36;
     --purple: #9C2A2A;
     --pink: #B8860B;
-    --teal: #364156;
+    --teal: #2C8B8B;
 
-    /* Keep your existing -bg colors below here */
-    --blue-bg: rgba(26, 131, 138, 0.15);
-    --green-bg: rgba(42, 114, 73, 0.15);
-    --orange-bg: rgba(196, 90, 54, 0.15);
-    --purple-bg: rgba(156, 42, 42, 0.15);
-    --pink-bg: rgba(184, 134, 11, 0.15);
-    --teal-bg: rgba(54, 65, 86, 0.15);
+    /* Accent backgrounds */
+    --blue-bg: rgba(26, 131, 138, 0.12);
+    --green-bg: rgba(42, 114, 73, 0.12);
+    --orange-bg: rgba(196, 90, 54, 0.12);
+    --purple-bg: rgba(156, 42, 42, 0.12);
+    --pink-bg: rgba(184, 134, 11, 0.12);
+    --teal-bg: rgba(44, 139, 139, 0.12);
 
-    /* --- Dimensions & Effects --- */
-    --radius: 12px;
-    --radius-sm: 8px;
-    --radius-xs: 4px;
-    /* Softer, warmer shadow for light mode */
-    --shadow: 0 8px 30px rgba(139, 127, 110, 0.15);
+    /* Layout */
+    --radius: 20px;
+    --radius-sm: 14px;
     --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-    --font: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* Typography */
+    --font: 'Outfit', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Reset & Base */
-*, *::before, *::after {
+:root[data-theme="light"] {
+    --bg-base: #F9F6F0;
+    --bg-surface: rgba(253, 251, 247, 0.85);
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #FFFDF8;
+    --bg-elevated: #FFFFFF;
+
+    --border: rgba(197, 160, 89, 0.30);
+    --border-hover: rgba(197, 160, 89, 0.75);
+
+    --text-primary: #1E1915;
+    --text-secondary: #5C5448;
+    --text-tertiary: #8B7F6E;
+    --text-muted: #A09382;
+
+    --shadow: 0 8px 30px rgba(139, 127, 110, 0.15);
+    --accent-glow: rgba(26, 131, 138, 0.18);
+}
+
+:root[data-theme="dark"] {
+    --bg-base: #050608;
+    --bg-surface: rgba(15, 17, 22, 0.85);
+    --bg-card: #161920;
+    --bg-card-hover: #1C212B;
+    --bg-elevated: #12151B;
+
+    --border: rgba(255, 255, 255, 0.10);
+    --border-hover: rgba(255, 255, 255, 0.22);
+
+    --text-primary: #E2E4ED;
+    --text-secondary: #9499B0;
+    --text-tertiary: #6D7285;
+    --text-muted: #5E6476;
+
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    --accent-glow: rgba(239, 1, 7, 0.10);
+}
+
+/* =========================================================
+   RESET + BASE
+========================================================= */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -52,7 +83,7 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px; /* Base font size fix */
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -60,12 +91,17 @@ body {
     background-color: var(--bg-base);
     color: var(--text-primary);
     font-family: var(--font);
-
-    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
-    background-size: 50px 50px; /* Controls the distance between dots */
-
-    background-attachment: fixed; /* Keeps dots static while scrolling */
     min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+}
+
+[data-theme="light"] body {
+    background-image: radial-gradient(rgba(30, 25, 21, 0.06) 1.2px, transparent 1.2px);
 }
 
 a {
@@ -77,94 +113,187 @@ ul {
     list-style: none;
 }
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
 ::selection {
     background: rgba(56, 189, 248, 0.2);
     color: var(--blue);
 }
 
-/* --- Navigation --- */
+/* =========================================================
+   OPTIONAL SPOTLIGHT
+========================================================= */
+.spotlight {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(
+        circle at var(--x, 50%) var(--y, 50%),
+        var(--accent-glow) 0%,
+        transparent 40%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    height: 80px;
     padding: 0 2rem;
-    height: 80px; /* Made slightly taller to fit the new boxes */
 
-    /* THE MAGIC TRICK for perfect centering */
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
 
-    /* No background on the full bar anymore (cleaner look) */
     background: transparent;
 }
 
-/* 1. Left: The Logo */
 .nav-brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: var(--text-primary);
-
-    /* Changed to Light Glassmorphism */
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    padding: 8px 16px;
-    border-radius: 50px;
     width: fit-content;
-
-    cursor: pointer;
-    transition: transform 0.2s ease;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    transition: var(--transition);
 }
 
 .nav-brand-logo {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    background: #ffffff;
+    border: 2px solid var(--arsenal-red);
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(239, 1, 7, 0.18);
+    transition: var(--transition);
+    filter: invert(13%) sepia(97%) saturate(5833%) brightness(95%) contrast(116%);
 }
 
-.nav-brand:hover {
-    transform: scale(1.02);
+[data-theme="dark"] .nav-brand-logo {
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(239, 1, 7, 0.22);
 }
 
-/* 2. Center: The "Floating Dock" Menu */
+.nav-brand:hover .nav-brand-logo {
+    transform: rotate(-5deg) scale(1.08);
+    box-shadow: 0 0 15px rgba(239, 1, 7, 0.35);
+}
+
 .nav-links {
     display: flex;
     align-items: center;
     gap: 6px;
-
-    /* Changed to Light Glassmorphism */
-    background: rgba(255, 255, 255, 0.8);
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--bg-surface);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    padding: 6px;
-    border-radius: 100px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); /* Softer shadow for light mode */
+    box-shadow: var(--shadow);
 }
 
-/* 3. The Individual Links (Buttons) */
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
 .nav-links a {
     color: var(--text-primary);
     font-size: 0.95rem;
-    font-weight: 600; /* Bumped up weight so it stands out */
-    text-decoration: none;
-    padding: 10px 24px;
+    font-weight: 600;
+    padding: 10px 20px;
     border-radius: 50px;
     transition: all 0.2s ease;
 }
 
-/* Hover Effect for Light Mode */
 .nav-links a:hover {
     color: var(--blue);
-    background: rgba(0, 0, 0, 0.04); /* Subtle dark shading instead of light shading */
+    background: rgba(0, 0, 0, 0.04);
     transform: translateY(-1px);
 }
 
-/* --- Hero Section --- */
+[data-theme="dark"] .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.theme-toggle-wrapper {
+    margin-left: 4px;
+}
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+.theme-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: var(--transition);
+    color: var(--text-primary);
+}
+
+.toggle-rim {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, #B8860B, #FFD700);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.theme-btn:hover .toggle-rim,
+.theme-btn:active .toggle-rim {
+    opacity: 1;
+}
+
+.theme-btn:hover {
+    transform: scale(1.08);
+    border-color: var(--pink);
+}
+
+[data-theme="light"] .dark-icon {
+    display: none;
+}
+
+[data-theme="dark"] .light-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-btn {
+    background: #1A1A1A;
+    color: #FFD700;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
 .hero {
     position: relative;
     background: transparent;
@@ -172,12 +301,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 80px;
-}
-
-/* Ambient Background Glow */
-.hero::before {
-    display: none;
+    padding: 100px 2rem 3rem;
 }
 
 .hero-content {
@@ -187,9 +311,10 @@ nav {
     grid-template-columns: 320px 1fr;
     gap: 4rem;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
-/* Hero Left: Photo */
 .hero-photo-col {
     position: relative;
     animation: fadeUp 0.6s ease-out forwards;
@@ -211,88 +336,37 @@ nav {
     object-fit: cover;
 }
 
+[data-theme="dark"] .hero-profile-img {
+    filter: drop-shadow(0 0 10px rgba(239, 1, 7, 0.18));
+}
+
 .hero-photo-status {
     position: absolute;
     bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 2;
+
     display: flex;
     align-items: center;
     gap: 0.6rem;
+    width: max-content;
+    white-space: nowrap;
+
     padding: 0.6rem 1rem;
-    border-radius: 50px;
+    border-radius: 999px;
     background: var(--bg-elevated);
     border: 1px solid var(--border-hover);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    white-space: nowrap;
-    z-index: 2;
-    width: max-content;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.hero-card-split {
-    display: grid;
-    gap: 2rem;
+.company-link {
+    font-weight: 600;
+    color: var(--blue);
 }
 
-/* --- Roadmap Box Styling --- */
-.roadmap-box {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 1.5rem;
-    text-align: left; /* Ensures text stays left-aligned even on mobile */
-}
-
-.roadmap-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.75rem;
-}
-
-.roadmap-header .material-icons-outlined {
-    font-size: 1.1rem;
-    color: var(--green);
-}
-
-.roadmap-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.75rem;
-}
-
-.roadmap-item:last-child {
-    margin-bottom: 0;
-}
-
-/* The Status Dots */
-.roadmap-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0; /* Stops the dot from squishing if text wraps */
-}
-
-/* Reuses your awesome green pulse animation for active work! */
-.roadmap-dot.active {
-    background: var(--green);
-    box-shadow: 0 0 0 3px rgba(42, 114, 73, 0.2);
-    animation: pulse 2s infinite;
-}
-
-.roadmap-dot.pending {
-    border: 2px solid var(--text-muted);
-    background: transparent;
+.company-link:hover {
+    text-decoration: underline;
 }
 
 .status-dot {
@@ -304,54 +378,18 @@ nav {
     animation: pulse 2s infinite;
 }
 
-.scroll-cta {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    z-index: 10;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards; /* Fade in delay */
-}
-
-.scroll-cta span {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.scroll-cta:hover span {
-    color: var(--blue); /* Turns blue on hover */
-}
-
-.scroll-cta-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--blue), transparent);
-    animation: scrollPulse 2s infinite;
-}
-
-.company-link {
-    font-weight: 600;
-    color: var(--blue);
-}
-
-/* Hero Right: Text */
 .hero-right {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     animation: fadeUp 0.6s 0.1s ease-out forwards;
     opacity: 0;
+}
+
+.hero-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
 .hero-badge {
@@ -361,8 +399,8 @@ nav {
     gap: 8px;
     padding: 6px 16px;
     background: var(--blue-bg);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    border-radius: 100px;
+    border: 1px solid rgba(26, 131, 138, 0.28);
+    border-radius: 999px;
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--blue);
@@ -371,31 +409,30 @@ nav {
 .hero-name {
     font-size: clamp(3rem, 5vw, 4.5rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.05;
     letter-spacing: -0.02em;
 }
 
 .hero-name span {
-    background: linear-gradient(135deg, var(--blue), var(--purple));
+    background: linear-gradient(135deg, var(--arsenal-red), var(--blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--text-primary);
     font-weight: 400;
-    max-width: 600px;
-    line-height: 1.6;
+    max-width: 720px;
+    line-height: 1.7;
 }
 
 .hero-meta {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
-    /* Changed from 16px to 2.5rem (40px) to give it breathing room */
-    margin-top: 2.5rem;
-    margin-bottom: 2rem; /* Added bottom margin so it doesn't hit the buttons/stats */
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .hero-meta-item {
@@ -416,16 +453,14 @@ nav {
     text-decoration: underline;
 }
 
-.hero-card {
-    grid-column: 1 / -1;
-}
-
-/* Stats Row */
+/* =========================================================
+   STATS + CERTS
+========================================================= */
 .stats-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .stat-chip {
@@ -433,11 +468,16 @@ nav {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    text-align: left;
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     transition: var(--transition);
-    text-align: left;
+    min-width: 0;
+}
+
+.stat-chip > div:last-child {
+    min-width: 0;
 }
 
 .stat-chip:hover {
@@ -445,12 +485,18 @@ nav {
     transform: translateY(-2px);
 }
 
+[data-theme="dark"] .stat-chip {
+    background: #0D0F12;
+    border-color: #1A1D23;
+}
+
 .stat-chip-icon {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: 10px;
     display: grid;
     place-items: center;
+    flex-shrink: 0;
 }
 
 .stat-chip-value {
@@ -461,51 +507,114 @@ nav {
 }
 
 .stat-chip-label {
-    font-size: 0.75rem;
-    color: var(--text-primary); /* Changed from tertiary to secondary for better contrast */
-    font-weight: 700; /* Made the text bolder */
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     margin-top: 4px;
-    white-space: nowrap;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    white-space: normal;
+    line-height: 1.25;
 }
 
-/* Certifications Row */
 .certs-row {
     display: flex;
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     padding-top: 1rem;
     border-top: 1px solid var(--border);
+}
+
+.certs-row-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
 }
 
 .cert-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.9rem;
+    padding: 6px 10px;
+    font-size: 0.88rem;
     color: var(--text-secondary);
-    padding: 4px 8px;
     background: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
 }
 
-/* --- Common Sections --- */
+.cert-badge .material-icons-outlined {
+    font-size: 16px;
+}
+
+.rhcsa { color: var(--arsenal-red); }
+.aws { color: var(--orange); }
+.ckad { color: var(--blue); }
+.azure { color: var(--green); }
+
+/* =========================================================
+   SCROLL CTA
+========================================================= */
+.scroll-cta {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+}
+
+.scroll-cta span {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.scroll-cta:hover span {
+    color: var(--blue);
+}
+
+.scroll-cta-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+    animation: scrollPulse 2s infinite;
+}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 .section {
-    padding: 6rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 6rem 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .section-head {
     max-width: 700px;
-    margin: 0 auto 3rem auto; /* The 'auto' pushes it to the exact center of the page */
-    text-align: center;       /* Centers the title and paragraph text */
+    margin: 0 auto 3rem auto;
+    text-align: center;
+
     display: flex;
     flex-direction: column;
-    align-items: center;      /* Centers the badge perfectly above the title */
+    align-items: center;
 }
 
 .section-badge {
@@ -513,12 +622,31 @@ nav {
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
-    border-radius: 100px;
+    border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
+    border: 1px solid transparent;
+}
+
+.section-badge.green-badge {
+    background: var(--green-bg);
+    color: var(--green);
+    border-color: rgba(42, 114, 73, 0.25);
+}
+
+.section-badge.orange-badge {
+    background: var(--orange-bg);
+    color: var(--orange);
+    border-color: rgba(196, 90, 54, 0.25);
+}
+
+.section-badge.pink-badge {
+    background: var(--pink-bg);
+    color: var(--pink);
+    border-color: rgba(184, 134, 11, 0.25);
 }
 
 .section-title {
@@ -530,10 +658,60 @@ nav {
 .section-subtitle {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* Featured Projects Header */
+/* =========================================================
+   DIVIDERS
+========================================================= */
+.divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.divider-line {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--border) 15%,
+        rgba(239, 1, 7, 0.22) 50%,
+        var(--border) 85%,
+        transparent 100%
+    );
+}
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+.projects-grid,
+.edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card,
+.edu-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.project-card:hover,
+.edu-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow);
+}
+
+.project-card.hero-card {
+    grid-column: 1 / -1;
+}
+
 .project-card-header {
     display: flex;
     justify-content: flex-start;
@@ -542,31 +720,144 @@ nav {
     margin-bottom: 1rem;
 }
 
+.project-name,
+.edu-degree {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
 .project-card-header .project-name {
     margin-bottom: 0;
 }
 
-/* Grab the specific colors for the icons */
-.project-card[style*="--blue"] .project-link-icon {
+.project-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.project-link-icon:hover {
+    transform: translateY(-1px);
+}
+
+.project-card[style*="var(--green)"] .project-link-icon {
+    color: var(--green);
+}
+
+.project-card[style*="var(--blue)"] .project-link-icon {
     color: var(--blue);
 }
 
-.project-card[style*="--purple"] .project-link-icon {
+.project-card[style*="var(--purple)"] .project-link-icon {
     color: var(--purple);
 }
 
-/* --- Experience Blocks --- */
+.project-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: 0.5rem;
+}
+
+.project-stat {
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 14px;
+}
+
+.hero-card-split {
+    display: grid;
+    gap: 2rem;
+}
+
+.roadmap-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.roadmap-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+}
+
+.roadmap-header .material-icons-outlined {
+    font-size: 1.1rem;
+    color: var(--green);
+}
+
+.roadmap-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.roadmap-item:last-child {
+    margin-bottom: 0;
+}
+
+.roadmap-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.roadmap-dot.active {
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(42, 114, 73, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.roadmap-dot.pending {
+    border: 2px solid var(--text-muted);
+    background: transparent;
+}
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
 .exp-block {
     margin-bottom: 4rem;
+}
+
+.exp-block:last-child {
+    margin-bottom: 0;
 }
 
 .exp-block-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 1px solid var(--border);
+    gap: 1rem;
     padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
 }
 
 .exp-block-company {
@@ -580,10 +871,20 @@ nav {
     margin-top: 0.25rem;
 }
 
+.exp-block-meta {
+    text-align: right;
+}
+
 .exp-block-dates {
     font-family: var(--font-mono);
     font-size: 0.9rem;
     color: var(--text-secondary);
+}
+
+.exp-block-loc {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--text-tertiary);
 }
 
 .achievements-grid {
@@ -599,14 +900,20 @@ nav {
     padding: 1.75rem;
     transition: var(--transition);
 
-    display: flex; /* 1. Turn on Flexbox */
-    flex-direction: column; /* 2. Stack items vertically */
-    height: 100%; /* 3. Force card to fill the grid cell */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .achievement:hover {
     background: var(--bg-card-hover);
     border-color: var(--border-hover);
+    transform: translateY(-3px);
+}
+
+[data-theme="dark"] .achievement:hover {
+    border-color: var(--arsenal-red);
+    background: rgba(239, 1, 7, 0.05);
 }
 
 .achievement-icon {
@@ -616,37 +923,82 @@ nav {
     display: grid;
     place-items: center;
     margin-bottom: 1rem;
+    background: var(--bg-surface);
+    color: var(--text-primary);
 }
 
 .achievement-name {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
     color: var(--text-primary);
 }
 
 .achievement-text {
-    font-size: 1rem; /* Scaled up for readability */
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--text-secondary);
-    line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
 .achievement-metric {
+    margin-top: auto;
+    width: fit-content;
+
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-top: 1rem;
+
     padding: 6px 14px;
-    border-radius: 100px;
+    border-radius: 999px;
     font-size: 0.85rem;
     font-weight: 600;
     font-family: var(--font-mono);
-    margin-top: auto;
-    width: fit-content;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
 }
 
-/* --- Skills Grid --- */
+/* color variants */
+.achievement.blue .achievement-icon,
+.skill-card.blue .skill-card-label {
+    color: var(--blue);
+}
+
+.achievement.green .achievement-icon,
+.skill-card.green .skill-card-label {
+    color: var(--green);
+}
+
+.achievement.purple .achievement-icon,
+.skill-card.purple .skill-card-label {
+    color: var(--purple);
+}
+
+.achievement.orange .achievement-icon,
+.skill-card.orange .skill-card-label {
+    color: var(--orange);
+}
+
+.achievement.pink .achievement-icon,
+.skill-card.pink .skill-card-label {
+    color: var(--pink);
+}
+
+.achievement.teal .achievement-icon,
+.skill-card.teal .skill-card-label {
+    color: var(--teal);
+}
+
+.achievement.blue .achievement-icon { background: var(--blue-bg); }
+.achievement.green .achievement-icon { background: var(--green-bg); }
+.achievement.purple .achievement-icon { background: var(--purple-bg); }
+.achievement.orange .achievement-icon { background: var(--orange-bg); }
+.achievement.pink .achievement-icon { background: var(--pink-bg); }
+.achievement.teal .achievement-icon { background: var(--teal-bg); }
+
+/* =========================================================
+   SKILLS
+========================================================= */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -663,6 +1015,7 @@ nav {
 
 .skill-card:hover {
     transform: translateY(-4px);
+    border-color: var(--border-hover);
     box-shadow: var(--shadow);
 }
 
@@ -687,6 +1040,7 @@ nav {
     border: 1px solid var(--border);
     border-radius: 6px;
     color: var(--text-secondary);
+    transition: var(--transition);
 }
 
 .skill-tag:hover {
@@ -694,52 +1048,157 @@ nav {
     color: var(--text-primary);
 }
 
-/* --- Project & Education Cards (Reused styles) --- */
-.edu-grid, .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+/* =========================================================
+   EDUCATION
+========================================================= */
+.edu-school {
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.edu-details {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+    padding: 4rem 2rem;
+    margin-top: 4rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 1.5rem;
 }
 
-.edu-card, .project-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 2rem;
-}
-
-.edu-degree, .project-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.project-desc {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-top: 0.5rem;
-}
-
-/* Footer */
-footer {
-    padding: 4rem 2rem;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    margin-top: 4rem;
-}
-
-footer a {
-    margin: 0 1rem;
+.footer-links a {
     color: var(--text-tertiary);
     font-weight: 500;
     transition: var(--transition);
 }
 
-footer a:hover {
+.footer-links a:hover {
     color: var(--blue);
 }
 
-/* Animations */
+.footer-copy {
+    margin-top: 1.25rem;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.coyg-trigger {
+    cursor: pointer;
+    margin-left: 8px;
+    display: inline-block;
+    filter: grayscale(1);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.coyg-message {
+    font-family: var(--font-mono);
+    color: var(--arsenal-red);
+    font-weight: 800;
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0.4s ease;
+    pointer-events: none;
+}
+
+.coyg-trigger:hover {
+    filter: grayscale(0);
+    transform: scale(1.35) rotate(15deg);
+}
+
+.coyg-trigger:hover + .coyg-message {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+.back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--blue);
+    color: var(--bg-base);
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-to-top .material-icons-outlined {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--purple);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.35);
+    color: white;
+}
+
+/* =========================================================
+   REVEAL ANIMATION CLASSES
+========================================================= */
+.section-head,
+.exp-block,
+.skill-card,
+.edu-card,
+.project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.section-head.visible,
+.exp-block.visible,
+.skill-card.visible,
+.edu-card.visible,
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -763,10 +1222,27 @@ footer a:hover {
     }
 }
 
-/* --- Responsive --- */
+@keyframes scrollPulse {
+    0% {
+        opacity: 0.3;
+        transform: scaleY(0.85);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scaleY(0.85);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 @media (min-width: 901px) {
     .hero-card-split {
-        grid-template-columns: 3fr 2fr; /* 60% Left, 40% Right */
+        grid-template-columns: 3fr 2fr;
         align-items: center;
     }
 }
@@ -785,6 +1261,14 @@ footer a:hover {
 
     .hero-right {
         align-items: center;
+    }
+
+    .hero-badge {
+        align-self: center;
+    }
+
+    .hero-title {
+        max-width: 100%;
     }
 
     .hero-meta {
@@ -808,16 +1292,14 @@ footer a:hover {
     }
 
     .project-card-header {
-        flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 8px;
     }
 
     .exp-block-header {
         flex-direction: column;
-        align-items: center; /* Changed from flex-start */
-        text-align: center; /* Added text centering */
+        align-items: center;
+        text-align: center;
         gap: 0.5rem;
     }
 
@@ -825,15 +1307,18 @@ footer a:hover {
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
-    .achievements-grid, .edu-grid, .projects-grid {
+    .achievements-grid,
+    .edu-grid,
+    .projects-grid {
         grid-template-columns: 1fr;
     }
 
     .achievement {
-        text-align: center; /* Centers the title and paragraph text */
-        align-items: center; /* Centers the icon and the bottom metric badge */
+        text-align: center;
+        align-items: center;
     }
 
     .skill-card-label {
@@ -841,114 +1326,57 @@ footer a:hover {
     }
 
     .skill-tags {
-        justify-content: center; /* Centers the flexbox tags */
+        justify-content: center;
     }
 }
 
-/* --- Back To Top Button --- */
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--blue);
-    color: var(--bg-base); /* Dark icon on blue bg */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
-    text-decoration: none;
-    z-index: 9999;
-
-    /* Hidden by default */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.back-to-top .material-icons-outlined {
-    font-size: 24px;
-    font-weight: 600;
-}
-
-/* State when visible (triggered by JS) */
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-/* Hover Effect */
-.back-to-top:hover {
-    background: var(--purple); /* Gradients to purple on hover */
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.5);
-    color: white;
-}
-
-/* --- MOBILE OPTIMIZATIONS --- */
 @media (max-width: 768px) {
-    /* 1. Reset the Navigation Grid */
     nav {
-        grid-template-columns: 1fr; /* Stack everything */
+        grid-template-columns: 1fr;
         height: auto;
         padding: 10px 20px;
         justify-content: center;
     }
 
-    /* 2. Center the Logo at the Top */
     .nav-brand {
-        margin: 0 auto; /* Center it */
+        margin: 0 auto;
         width: fit-content;
     }
 
-    /* 3. The "Mobile App Dock" (Bottom Menu) */
     .nav-links {
-        display: flex !important; /* Force it to show */
+        display: flex !important;
         position: fixed;
-        bottom: 20px;
         left: 20px;
         right: 20px;
+        bottom: 20px;
         z-index: 1000;
 
-        /* Glassmorphism Container */
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 20px;
+
         background: rgba(11, 18, 25, 0.9);
         backdrop-filter: blur(16px);
         border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 12px;
-
-        /* Scrollable logic */
-        overflow-x: auto;
-        justify-content: flex-start; /* Aligns items to start for scrolling */
-        gap: 12px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
-        /* Hide scrollbar visually but keep functionality */
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
-    /* Hide scrollbar for Chrome/Safari */
     .nav-links::-webkit-scrollbar {
         display: none;
     }
 
-    /* 4. Smaller Buttons for Mobile */
     .nav-links a {
-        color: var(--text-primary); /* Much darker contrast */
         font-size: 0.95rem;
-        font-weight: 600; /* Nice and bold */
-        text-decoration: none;
-        padding: 10px 24px;
-        border-radius: 50px;
-        transition: all 0.2s ease;
+        font-weight: 600;
+        padding: 10px 20px;
+        white-space: nowrap;
     }
 
-    /* 5. Adjust Back-to-Top button to sit ABOVE the mobile menu */
     .back-to-top {
         bottom: 90px !important;
         right: 20px;
@@ -960,40 +1388,42 @@ footer a:hover {
         font-size: 20px;
     }
 
-    /* --- FIX: Make Meta Info Smaller on Mobile --- */
+    .hero {
+        min-height: auto;
+        height: auto;
+        padding-top: 120px;
+        flex-direction: column;
+    }
+
     .hero-meta {
-        gap: 12px; /* Tighter horizontal spacing */
+        gap: 12px;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
     }
 
     .hero-meta-item {
-        font-size: 0.8rem; /* Smaller text */
+        font-size: 0.8rem;
     }
 
     .hero-meta-item .material-icons-outlined {
-        font-size: 1rem; /* Smaller icons to match */
+        font-size: 1rem;
     }
 
     .scroll-cta {
-        position: relative; /* Removes it from absolute positioning */
+        position: relative;
         bottom: auto;
-        left: auto; /* Removes the desktop centering hack */
-        transform: none; /* Removes the desktop centering hack */
-        margin-top: 2rem; /* Much smaller top gap */
-        margin-bottom: 2rem; /* Just enough space to clear your bottom menu */
-        align-self: center; /* <-- Centers it perfectly in the flex column */
+        left: auto;
+        transform: none;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        align-self: center;
     }
 
     .section {
-        padding: 4rem 1.5rem; /* Reduced from the desktop 6rem 2rem */
+        padding: 4rem 1.5rem;
     }
 
-    /* Ensure the hero section stretches cleanly on mobile */
-    .hero {
-        min-height: auto;
-        height: auto;
-        padding-top: 120px; /* Clear the top logo */
-        flex-direction: column;
+    .section-title {
+        font-size: 2rem;
     }
 }

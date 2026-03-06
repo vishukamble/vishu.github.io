@@ -43,6 +43,13 @@
         <li><a href="#education">Education</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="theme-toggle-wrapper">
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined light-icon">light_mode</span>
+                <span class="material-symbols-outlined dark-icon">dark_mode</span>
+                <div class="toggle-rim"></div>
+            </button>
+        </li>
     </ul>
 </nav>
 
@@ -625,7 +632,11 @@
         <a href="https://linkedin.com/in/vishukamble" target="_blank">LinkedIn</a>
         <a href="https://github.com/vishukamble" target="_blank">GitHub</a>
     </div>
-    <div class="footer-copy">&copy; 2025 Vishwanath Kamble</div>
+    <div class="footer-copy">
+        &copy; 2025 Vishwanath Kamble
+        <span class="coyg-trigger" title="North London is Red">🔴</span>
+        <span class="coyg-message">COYG!</span>
+    </div>
 </footer>
 
 <a href="#" class="back-to-top" aria-label="Back to Top">
@@ -633,6 +644,27 @@
 </a>
 
 <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // Initialize theme from LocalStorage or System Preference
+    const savedTheme = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    html.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Add a kinetic 'hop' effect when toggling
+        themeToggle.style.transform = 'scale(0.8)';
+        setTimeout(() => themeToggle.style.transform = '', 150);
+    });
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

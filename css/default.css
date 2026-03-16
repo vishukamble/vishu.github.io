@@ -755,6 +755,10 @@ nav {
     color: var(--purple);
 }
 
+.project-card[style*="var(--orange)"] .project-link-icon {
+    color: var(--orange);
+}
+
 .project-desc {
     font-size: 1rem;
     color: var(--text-secondary);

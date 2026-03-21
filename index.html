@@ -41,7 +41,7 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#education">Education</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Community</a></li>
         <li><a href="#contact">Contact</a></li>
         <li class="theme-toggle-wrapper">
             <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
@@ -175,29 +175,87 @@
     </div>
 
     <div class="projects-grid">
-        <div class="project-card" style="border-top: 4px solid var(--green);">
-            <div class="project-card-header">
-                <div class="project-name">skewlog</div>
-                <a href="https://skewlog.com" target="_blank" rel="noopener noreferrer" class="project-link-icon">
-                    <span class="material-icons-outlined">open_in_new</span>
-                </a>
+        <div class="project-card hero-card" style="border-top: 4px solid var(--arsenal-red);">
+            <div class="hero-card-split">
+                <div class="hero-card-info">
+                    <div class="project-card-header">
+                        <div class="project-name">klarity</div>
+                        <a href="https://github.com/vishukamble/klarity" target="_blank" rel="noopener noreferrer"
+                           class="project-link-icon" style="color: var(--arsenal-red);">
+                            <span class="material-icons-outlined">open_in_new</span>
+                        </a>
+                    </div>
+                    <div class="project-desc" style="margin-bottom: 1.5rem;">
+                        A read-only Kubernetes diagnostic CLI built with Go. Scans multiple clusters and namespaces in parallel, classifies unhealthy workloads by root cause, and renders categorized terminal tables with one-line error summaries extracted directly from pod logs.
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Go</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CLI</span>
+                    </div>
+                </div>
+
+                <div class="hero-card-extra">
+                    <div class="roadmap-box">
+                        <div class="roadmap-header">
+                            <span class="material-icons-outlined" style="color: var(--arsenal-red);">policy</span> Core Philosophy
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot active" style="background: var(--arsenal-red); box-shadow: 0 0 0 3px rgba(239, 1, 7, 0.2);"></div>
+                            <span>Strictly Read-Only (Safe for Prod)</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot" style="background: var(--text-muted);"></div>
+                            <span>Multi-Cluster Parallel Scanning</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="project-desc" style="margin-bottom: 1.5rem;">
-                A self-hosted web app for Helm chart version diffing. Instantly visualize changes in values.yaml
-                and templates before upgrading your cluster. Features automated breaking change detection and
-                local SQLite caching.
-            </div>
-            <div class="skill-tags">
-                <span class="skill-tag">Helm</span>
-                <span class="skill-tag">Kubernetes</span>
-                <span class="skill-tag">SRE Tooling</span>
+        </div>
+
+        <div class="project-card hero-card" style="border-top: 4px solid var(--green);">
+            <div class="hero-card-split">
+                <div class="hero-card-info">
+                    <div class="project-card-header">
+                        <div class="project-name">skewlog</div>
+                        <a href="https://skewlog.com" target="_blank" rel="noopener noreferrer" class="project-link-icon" style="color: var(--green);">
+                            <span class="material-icons-outlined">open_in_new</span>
+                        </a>
+                    </div>
+                    <div class="project-desc" style="margin-bottom: 1.5rem;">
+                        A self-hosted web app for Helm chart version diffing. Instantly visualize changes in values.yaml
+                        and templates before upgrading your cluster. Features automated breaking change detection and
+                        local SQLite caching.
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Helm</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">SRE Tooling</span>
+                    </div>
+                </div>
+
+                <div class="hero-card-extra">
+                    <div class="roadmap-box">
+                        <div class="roadmap-header">
+                            <span class="material-icons-outlined" style="color: var(--green);">route</span> Active Development
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot active" style="background: var(--green); box-shadow: 0 0 0 3px rgba(42, 114, 73, 0.2);"></div>
+                            <span>Breaking changes parsing engine</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot pending"></div>
+                            <span>Native CLI tool option</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="project-card" style="border-top: 4px solid var(--orange);">
             <div class="project-card-header">
                 <div class="project-name">bucketlens</div>
-                <a href="https://bucketlens.com" target="_blank" rel="noopener noreferrer" class="project-link-icon">
+                <a href="https://bucketlens.com" target="_blank" rel="noopener noreferrer" class="project-link-icon" style="color: var(--orange);">
                     <span class="material-icons-outlined">open_in_new</span>
                 </a>
             </div>
@@ -214,7 +272,7 @@
         <div class="project-card" style="border-top: 4px solid var(--blue);">
             <div class="project-card-header">
                 <div class="project-name">hop2</div>
-                <a href="https://hop2.tech" target="_blank" rel="noopener noreferrer" class="project-link-icon">
+                <a href="https://hop2.tech" target="_blank" rel="noopener noreferrer" class="project-link-icon" style="color: var(--blue);">
                     <span class="material-icons-outlined">open_in_new</span>
                 </a>
             </div>
@@ -226,24 +284,6 @@
                 <span class="skill-tag">Python</span>
                 <span class="skill-tag">CLI</span>
                 <span class="skill-tag">Automation</span>
-            </div>
-        </div>
-
-        <div class="project-card" style="border-top: 4px solid var(--purple);">
-            <div class="project-card-header">
-                <div class="project-name">vilinks</div>
-                <a href="https://vilinks.org" target="_blank" rel="noopener noreferrer" class="project-link-icon">
-                    <span class="material-icons-outlined">open_in_new</span>
-                </a>
-            </div>
-            <div class="project-desc" style="margin-bottom: 1.5rem;">
-                A fast, lightweight local alternative to enterprise go-links (e.g., go/jira). It allows developers to
-                map custom shortcuts to frequently accessed URLs directly within their local environments.
-            </div>
-            <div class="skill-tags">
-                <span class="skill-tag">Go-Links</span>
-                <span class="skill-tag">Productivity</span>
-                <span class="skill-tag">Workflow</span>
             </div>
         </div>
     </div>
@@ -595,27 +635,32 @@
 <div class="divider">
     <div class="divider-line"></div>
 </div>
-
-<section class="section" id="projects">
+<section class="section" id="community">
     <div class="section-head">
-        <div class="section-badge pink-badge"><span class="material-icons-outlined">auto_awesome</span> Side Projects
+        <div class="section-badge orange-badge">
+            <span class="material-icons-outlined">record_voice_over</span> Knowledge Sharing
         </div>
-        <h2 class="section-title">Beyond the day job</h2>
+        <h2 class="section-title">Community & Teaching</h2>
     </div>
-    <div class="projects-grid">
-        <div class="project-card">
-            <div class="project-name">Udemy Instructor</div>
-            <div class="project-desc">Launched and published 5 courses on AWS and Python, building a community of
-                learners in cloud and automation fundamentals.
+
+    <div class="projects-grid" style="grid-template-columns: 1fr;">
+        <div class="project-card" style="border-left: 4px solid var(--orange);">
+            <div class="project-card-header">
+                <div class="project-name">Technical Instructor</div>
+                <a href="https://www.udemy.com/user/vishukamble/" target="_blank" rel="noopener noreferrer" class="project-link-icon" style="color: var(--orange);">
+                    <span class="material-icons-outlined">school</span>
+                </a>
             </div>
-            <div class="project-stat"><span class="material-icons-outlined" style="font-size:13px">groups</span> 84,000+
-                students · 900+ reviews
+            <div class="project-desc" style="font-size: 1.1rem; max-width: 800px;">
+                Launched and published highly-rated courses focused on AWS, Python, and cloud automation fundamentals. Building a global community of engineers by breaking down complex infrastructure concepts into accessible, production-ready workflows.
             </div>
-        </div>
-        <div class="project-card">
-            <div class="project-name">GeekStartS</div>
-            <div class="project-desc">Founded a WordPress-based tech blog for beginners, self-teaching WordPress and
-                optimizing performance by deploying on cloud CDNs.
+            <div class="skill-tags" style="margin-top: 1.5rem;">
+                <span class="skill-tag" style="color: var(--orange); border-color: var(--orange); font-weight: 600;">
+                    <span class="material-icons-outlined" style="font-size: 14px; vertical-align: middle;">groups</span>
+                    84,000+ Students
+                </span>
+                <span class="skill-tag">900+ Reviews</span>
+                <span class="skill-tag">5 Published Courses</span>
             </div>
         </div>
     </div>
